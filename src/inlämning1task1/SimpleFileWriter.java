@@ -1,4 +1,4 @@
-package inlämning1;
+package inlämning1task1;
 
 import java.io.*;
 
