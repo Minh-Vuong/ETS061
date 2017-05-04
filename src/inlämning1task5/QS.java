@@ -8,7 +8,7 @@ import java.io.*;
 class QS extends Proc{
 	public int numberInQueue = 0, accumulated, noMeasurements;
 	public Proc sendTo;
-	Random slump = new Random();
+	Random rand = new Random();
 	double service = 0.5;
 
 	public void TreatSignal(Signal x){
@@ -34,7 +34,7 @@ class QS extends Proc{
 					SignalList.SendSignal(ARRIVAL, sendTo, time);
 				}
 				if (numberInQueue > 0){
-					SignalList.SendSignal(READY, this, time + 0.2*slump.nextDouble());
+					SignalList.SendSignal(READY, this, time + 0.2*rand.nextDouble());
 				}
 			} break;
 			
@@ -51,12 +51,12 @@ class QS extends Proc{
 			case MEASURE:{
 				noMeasurements++;
 				accumulated = accumulated + numberInQueue;
-				SignalList.SendSignal(MEASURE, this, time + 2*slump.nextDouble());
+				SignalList.SendSignal(MEASURE, this, time + 2*rand.nextDouble());
 			} break;
 		}
 	}
 	private double exponentialDist(double mean){
-		return -(mean)*Math.log(slump.nextDouble());
+		return -(mean)*Math.log(rand.nextDouble());
 	}
 	
 }

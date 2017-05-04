@@ -4,7 +4,7 @@ import java.util.*;
 import java.io.*;
 
 public class State extends G {
-	public int numberInQueue = 0, accumulated = 0, noMeasurements = 0, noTotalCustomers = 0;
+	public int numberInQueue = 0, accumulated = 0, noMeasurements = 0, noCustomers = 0;
 	public double temp = 0, customerServiceTime = 0;
 
 	Random rand = new Random();
@@ -15,7 +15,7 @@ public class State extends G {
 		switch (x.eventType) {
 		case G.ARRIVAL: {
 			numberInQueue++;
-			noTotalCustomers++;
+			noCustomers++;
 			customerServiceTime = customerServiceTime + numberInQueue *15;
 			EventList.InsertEvent(G.ARRIVAL, G.time - (1 / 0.9) * Math.log(rand.nextDouble()));
 			if (numberInQueue == 1) {

@@ -7,25 +7,28 @@ public class MainSim extends G {
 
 	public static void main(String[] args) throws IOException {
 		Event actEvent;
-		State actState = new State();
 		int totalTime = 0, extraTime;
 		String endTime;
-		new EventList();
-		EventList.InsertEvent(G.ARRIVAL, 0);
-		EventList.InsertEvent(G.MEASURE, 5);
+		double meanServiceTime = 0;
 
 		for (int i = 0; 1 < 1000; i++) {
+			//insertEvent(ARRIVAL, 0);
+			//insertEvent(MEASURE, 5);
+			State actState = new State();
+			EventList.InsertEvent(G.ARRIVAL, 0);
+			EventList.InsertEvent(G.MEASURE, 5);
 			while (actState.open == true) {
 				actEvent = EventList.FetchEvent();
 				time = actEvent.eventTime;
 				actState.TreatEvent(actEvent);
 			}
 			totalTime += time;
+			meanServiceTime += (actState.customerServiceTime / actState.noCustomers);
 		}
 
 		endTime = "17.00";
 		extraTime = totalTime / 1000 - 480;
-		
+
 		if (extraTime < 60) {
 			if (extraTime < 10) {
 				endTime = "17.0" + extraTime;
@@ -40,7 +43,7 @@ public class MainSim extends G {
 		} else {
 			endTime = "18." + (extraTime - 60);
 		}
-		
+
 		if (extraTime == 120) {
 			endTime = "19.00";
 		} else if (extraTime < 180 && extraTime > 120) {
@@ -52,9 +55,10 @@ public class MainSim extends G {
 		}
 
 		System.out.println("The mean closing time per day is: " + endTime);
-		System.out
-				.println("The mean time for a prescription in the system is: "
-						+ actState.customerServiceTime / actState.noTotalCustomers);
+		System.out.println("The mean time for a prescription in the system is: " + 1000);
+
+		// System.out.println("The mean time for a prescription in the system
+		// is: " + actState.customerServiceTime / actState.noTotalCustomers);
 		// System.out.println(1.0 * actState.accumulated /
 		// actState.noMeasurements);
 		// System.out.println(actState.accumulated);

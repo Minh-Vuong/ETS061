@@ -109,12 +109,21 @@ public class MainSimSmallestQueue extends Global {
 
 		// Slutligen skrivs resultatet av simuleringen ut nedan:
 		// Finally the result of the simulation is printed below:
+		double meanCustomers = (1.0 * Q1.accumulated / Q1.noMeasurements)
+				             + (1.0 * Q2.accumulated / Q2.noMeasurements)
+				             + (1.0 * Q3.accumulated / Q3.noMeasurements)
+				             + (1.0 * Q4.accumulated / Q4.noMeasurements)
+				             + (1.0 * Q5.accumulated / Q5.noMeasurements);
+
+		double meanTime = meanCustomers*0.5 + 0.5;
 
 		System.out.println("Mean number of customers in queuing system 1: " + 1.0 * Q1.accumulated / Q1.noMeasurements);
 		System.out.println("Mean number of customers in queuing system 2: " + 1.0 * Q2.accumulated / Q2.noMeasurements);
 		System.out.println("Mean number of customers in queuing system 3: " + 1.0 * Q3.accumulated / Q3.noMeasurements);
 		System.out.println("Mean number of customers in queuing system 4: " + 1.0 * Q4.accumulated / Q4.noMeasurements);
 		System.out.println("Mean number of customers in queuing system 5: " + 1.0 * Q5.accumulated / Q5.noMeasurements);
+		System.out.println("Mean customers in the whole system: " + meanCustomers/meanTime);
+		System.out.println("Little's law:  " + (1.0 / 0.12) * meanTime);
 
 	}
 }
