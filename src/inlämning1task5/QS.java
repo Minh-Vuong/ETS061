@@ -34,7 +34,8 @@ class QS extends Proc{
 					SignalList.SendSignal(ARRIVAL, sendTo, time);
 				}
 				if (numberInQueue > 0){
-					SignalList.SendSignal(READY, this, time + 0.2*rand.nextDouble());
+					double tempRand = exponentialDist(service);
+					SignalList.SendSignal(READY, this, time + tempRand);
 				}
 			} break;
 			

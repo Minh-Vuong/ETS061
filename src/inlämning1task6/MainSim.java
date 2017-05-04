@@ -7,13 +7,11 @@ public class MainSim extends G {
 
 	public static void main(String[] args) throws IOException {
 		Event actEvent;
-		int totalTime = 0, extraTime;
+		int totalTime = 0, extraTime = 0;
 		String endTime;
 		double meanServiceTime = 0;
 
-		for (int i = 0; 1 < 1000; i++) {
-			//insertEvent(ARRIVAL, 0);
-			//insertEvent(MEASURE, 5);
+		for (int i = 0; i < 1000; i++) {
 			State actState = new State();
 			EventList.InsertEvent(G.ARRIVAL, 0);
 			EventList.InsertEvent(G.MEASURE, 5);
@@ -55,10 +53,8 @@ public class MainSim extends G {
 		}
 
 		System.out.println("The mean closing time per day is: " + endTime);
-		System.out.println("The mean time for a prescription in the system is: " + 1000);
-
-		// System.out.println("The mean time for a prescription in the system
-		// is: " + actState.customerServiceTime / actState.noTotalCustomers);
+		//System.out.println("The mean time for a prescription in the system is: " + 1000);
+		System.out.println("The mean time for a prescription is: " + meanServiceTime / 1000);
 		// System.out.println(1.0 * actState.accumulated /
 		// actState.noMeasurements);
 		// System.out.println(actState.accumulated);
