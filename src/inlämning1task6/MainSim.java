@@ -37,9 +37,9 @@ public class MainSim extends G {
 		} else if (extraTime == 60) {
 			endTime = "18.00";
 		} else if (extraTime < 120 && extraTime > 60) {
-			endTime = "18.0" + (extraTime - 60);
-		} else {
 			endTime = "18." + (extraTime - 60);
+		} else {
+			endTime = "18.0" + (extraTime - 60);
 		}
 
 		if (extraTime == 120) {
@@ -51,14 +51,9 @@ public class MainSim extends G {
 				endTime = "19:" + (extraTime - 120);
 			}
 		}
-
+		
 		System.out.println("The mean closing time per day is: " + endTime);
-		//System.out.println("The mean time for a prescription in the system is: " + 1000);
 		System.out.println("The mean time for a prescription is: " + meanServiceTime / 1000);
-		// System.out.println(1.0 * actState.accumulated /
-		// actState.noMeasurements);
-		// System.out.println(actState.accumulated);
-		// System.out.println(actState.noMeasurements);
-		// actState.W.close();
+
 	}
 }

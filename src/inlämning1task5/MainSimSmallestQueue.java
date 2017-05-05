@@ -44,7 +44,7 @@ public class MainSimSmallestQueue extends Global {
 		dispatcher.sendTo = null;
 
 		Gen Generator = new Gen();
-		Generator.lambda = (1.0 / 0.12); // Generar med 0.12 sekund för att
+		Generator.lambda = (1.0 / 2.0); // Generar med 0.12 sekund för att
 											// bekräfta little's teori.
 											// //Generator shall
 											// generate 0.12 to verify the
@@ -70,7 +70,8 @@ public class MainSimSmallestQueue extends Global {
 		// This is the main loop
 
 		while (time < 100000) {
-			//lägger till och jämför de olika köerna mot varandra med hjälp av en lista och en treemap
+			// lägger till och jämför de olika köerna mot varandra med hjälp av
+			// en lista och en treemap
 			map.put("Q1", Q1.numberInQueue);
 			map.put("Q2", Q2.numberInQueue);
 			map.put("Q3", Q3.numberInQueue);
@@ -109,21 +110,22 @@ public class MainSimSmallestQueue extends Global {
 
 		// Slutligen skrivs resultatet av simuleringen ut nedan:
 		// Finally the result of the simulation is printed below:
-		double meanCustomers = (1.0 * Q1.accumulated / Q1.noMeasurements)
-				             + (1.0 * Q2.accumulated / Q2.noMeasurements)
-				             + (1.0 * Q3.accumulated / Q3.noMeasurements)
-				             + (1.0 * Q4.accumulated / Q4.noMeasurements)
-				             + (1.0 * Q5.accumulated / Q5.noMeasurements);
+		double meanCustomers = (1.0 * Q1.accumulated / Q1.noMeasurements) + (1.0 * Q2.accumulated / Q2.noMeasurements)
+				+ (1.0 * Q3.accumulated / Q3.noMeasurements) + (1.0 * Q4.accumulated / Q4.noMeasurements)
+				+ (1.0 * Q5.accumulated / Q5.noMeasurements);
 
-		double meanTime = meanCustomers*0.5 + 0.5;
+		double T = (Q1.totalTime / Q1.departures + Q2.totalTime / Q2.departures + Q3.totalTime / Q3.departures
+				+ Q4.totalTime / Q4.departures + Q5.totalTime / Q5.departures) / 5;
 
 		System.out.println("Mean number of customers in queuing system 1: " + 1.0 * Q1.accumulated / Q1.noMeasurements);
 		System.out.println("Mean number of customers in queuing system 2: " + 1.0 * Q2.accumulated / Q2.noMeasurements);
 		System.out.println("Mean number of customers in queuing system 3: " + 1.0 * Q3.accumulated / Q3.noMeasurements);
 		System.out.println("Mean number of customers in queuing system 4: " + 1.0 * Q4.accumulated / Q4.noMeasurements);
 		System.out.println("Mean number of customers in queuing system 5: " + 1.0 * Q5.accumulated / Q5.noMeasurements);
-		System.out.println("Mean customers in the whole system: " + meanCustomers/meanTime);
-		System.out.println("Little's law:  " + (1.0 / 0.12) * meanTime);
+		System.out.println("Mean number N of customers in the whole system: " + meanCustomers);
+		System.out.println("Mean time T of customer in system: " + T);
+		System.out.println("Theoretical lambda: " + Generator.lambda);
+		System.out.println("Measured Lambda': " + meanCustomers / T);
 
 	}
 }

@@ -9,6 +9,7 @@ public class State extends G {
 	Random rand = new Random();
 	boolean open = true;
 
+
 	public void TreatEvent(Event x) {
 		switch (x.eventType) {
 		case G.ARRIVAL: 
@@ -31,7 +32,7 @@ public class State extends G {
 		case G.READY:
 			temp = (10 + 10 * rand.nextDouble()); // slumpar en betjänningstid
 													// mellan 10-20
-			customerServiceTime += temp * numberInQueue;
+			//customerServiceTime += temp;
 			numberInQueue--;
 			if (numberInQueue > 0) {
 				EventList.InsertEvent(G.READY, G.time + temp);
