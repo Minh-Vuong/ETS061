@@ -51,7 +51,7 @@ public class MainSim extends G {
 				endTime = "19:" + (extraTime - 120);
 			}
 		}
-		
+
 		System.out.println("The mean closing time per day is: " + endTime);
 		System.out.println("The mean time for a prescription is: " + meanServiceTime / 1000);
 

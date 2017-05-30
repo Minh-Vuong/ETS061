@@ -45,10 +45,10 @@ public class MainSimSmallestQueue extends Global {
 
 		Gen Generator = new Gen();
 		Generator.lambda = (1.0 / 2.0); // Generar med 0.12 sekund för att
-											// bekräfta little's teori.
-											// //Generator shall
-											// generate 0.12 to verify the
-											// program.
+										// bekräfta little's teori.
+										// //Generator shall
+										// generate 0.12 to verify the
+										// program.
 		Generator.sendTo = dispatcher; // De genererade kunderna ska skickas
 										// till kösystemet dipatcher // The
 										// generated customers shall be sent to

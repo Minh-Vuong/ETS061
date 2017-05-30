@@ -9,13 +9,12 @@ public class State extends G {
 	Random rand = new Random();
 	boolean open = true;
 
-
 	public void TreatEvent(Event x) {
 		switch (x.eventType) {
-		case G.ARRIVAL: 
+		case G.ARRIVAL:
 			numberInQueue++;
 			noCustomers++;
-			double tempRand = 10 * rand.nextDouble(); 
+			double tempRand = 10 * rand.nextDouble();
 			customerServiceTime = customerServiceTime + numberInQueue * (10 + tempRand);
 			if (numberInQueue == 1) {
 				EventList.InsertEvent(G.READY, G.time + (10 + tempRand));
@@ -26,31 +25,31 @@ public class State extends G {
 			} else {
 				EventList.InsertEvent(G.END, G.time);
 			}
-		
+
 			break;
 
 		case G.READY:
 			temp = (10 + 10 * rand.nextDouble()); // slumpar en betjänningstid
 													// mellan 10-20
-			//customerServiceTime += temp;
+			// customerServiceTime += temp;
 			numberInQueue--;
 			if (numberInQueue > 0) {
 				EventList.InsertEvent(G.READY, G.time + temp);
 			}
 			break;
-		case G.MEASURE: 
+		case G.MEASURE:
 			accumulated = accumulated + numberInQueue;
 			noMeasurements++;
 			EventList.InsertEvent(G.MEASURE, G.time + rand.nextDouble() * 10);
-		
+
 			break;
 
-		case G.END: 
+		case G.END:
 			if (numberInQueue == 0) {
 				open = false;
 			}
 			EventList.InsertEvent(G.END, G.time + 1);
-		
+
 			break;
 		}
 	}

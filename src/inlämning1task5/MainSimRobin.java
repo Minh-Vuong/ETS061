@@ -14,6 +14,7 @@ public class MainSimRobin extends Global {
 		// signal list in the main loop below.
 
 		Random rand = new Random();
+		int queue = 0;
 		Signal actSignal;
 		new SignalList();
 
@@ -39,10 +40,10 @@ public class MainSimRobin extends Global {
 
 		Gen Generator = new Gen();
 		Generator.lambda = (1.0 / 2.0); // Generar med 0.12 sekund för att
-											// bekräfta little's teori.
-											// //Generator shall
-											// generate 0.12 to verify the
-											// program.
+										// bekräfta little's teori.
+										// //Generator shall
+										// generate 0.12 to verify the
+										// program.
 		Generator.sendTo = dispatcher; // De genererade kunderna ska skickas
 										// till kösystemet dipatcher // The
 										// generated customers shall be sent to
@@ -64,22 +65,26 @@ public class MainSimRobin extends Global {
 		// This is the main loop
 
 		while (time < 100000) {
-			int queue = rand.nextInt(5);
 			switch (queue) {
 			case 0:
 				dispatcher.sendTo = Q1;
+				queue++;
 				break;
 			case 1:
 				dispatcher.sendTo = Q2;
+				queue++;
 				break;
 			case 2:
 				dispatcher.sendTo = Q3;
+				queue++;
 				break;
 			case 3:
 				dispatcher.sendTo = Q4;
+				queue++;
 				break;
 			case 4:
 				dispatcher.sendTo = Q5;
+				queue = 0;
 				break;
 			}
 			actSignal = SignalList.FetchSignal();
